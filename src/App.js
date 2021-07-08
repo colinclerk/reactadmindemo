@@ -61,6 +61,7 @@ const AdminWithClerk = () => {
   return (
     <Admin dataProvider={dataProvider} authProvider={authProvider}>
       <Resource name="users" list={ListGuesser} />
+      <Resource name="todos" list={ListGuesser} />
     </Admin>
   );
 };
