@@ -9,9 +9,11 @@ import {
   useClerk,
 } from "@clerk/clerk-react";
 
+const frontendApi = process.env.REACT_APP_CLERK_FRONTEND_API;
+
 const App = () => {
   return (
-    <ClerkProvider frontendApi="clerk.b1mvy.zxnpf.lcl.dev">
+    <ClerkProvider frontendApi={frontendApi}>
       <SignedIn>
         <AdminWithClerk />
       </SignedIn>
