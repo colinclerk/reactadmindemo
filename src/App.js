@@ -4,7 +4,7 @@ import {
   ClerkProvider,
   SignedIn,
   SignedOut,
-  SignIn,
+  RedirectToSignIn,
   useUser,
   useClerk,
 } from "@clerk/clerk-react";
@@ -20,13 +20,14 @@ const App = () => {
       <SignedOut>
         {/* provide an after sign in so we stay in place after sign-in
          and React Admin loads */}
-        <SignIn afterSignIn="/" />
+        <RedirectToSignIn afterSignInUrl="/" />
       </SignedOut>
     </ClerkProvider>
   );
 };
 
 const dataProvider = jsonServerProvider("https://jsonplaceholder.typicode.com");
+
 const AdminWithClerk = () => {
   const user = useUser();
   const { signOut } = useClerk();
