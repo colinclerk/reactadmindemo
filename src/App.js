@@ -1,33 +1,33 @@
-import { useEffect } from "react";
 import { Admin, Resource, ListGuesser } from "react-admin";
 import jsonServerProvider from "ra-data-json-server";
 import {
   ClerkProvider,
   SignedIn,
   SignedOut,
-  SignIn,
+  RedirectToSignIn,
   useUser,
   useClerk,
 } from "@clerk/clerk-react";
 
-const useClerkAuthProvider = () => {};
+const frontendApi = process.env.REACT_APP_CLERK_FRONTEND_API;
 
 const App = () => {
   return (
-    <ClerkProvider frontendApi="clerk.b1mvy.zxnpf.lcl.dev">
+    <ClerkProvider frontendApi={frontendApi}>
       <SignedIn>
         <AdminWithClerk />
       </SignedIn>
       <SignedOut>
         {/* provide an after sign in so we stay in place after sign-in
          and React Admin loads */}
-        <SignIn afterSignIn="/" />
+        <RedirectToSignIn afterSignInUrl="/" />
       </SignedOut>
     </ClerkProvider>
   );
 };
 
 const dataProvider = jsonServerProvider("https://jsonplaceholder.typicode.com");
+
 const AdminWithClerk = () => {
   const user = useUser();
   const { signOut } = useClerk();
